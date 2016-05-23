@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LVB-YS-i5n">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game View Controller-->
+        <scene sceneID="CtS-rA-C9T">
+            <objects>
+                <viewController storyboardIdentifier="GameViewController" id="LVB-YS-i5n" customClass="GameViewController" customModule="Swiftris" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PCf-gQ-wO7"/>
+                        <viewControllerLayoutGuide type="bottom" id="b3d-qh-BLL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bdc-N1-crn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DBS-JF-su9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" restorationIdentifier="LeftGameView" translatesAutoresizingMaskIntoConstraints="NO" id="mho-RT-B06" customClass="GameView" customModule="Swiftris" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
+                                        <color key="backgroundColor" red="1" green="0.03459988051" blue="0.92589109420000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oS-ga-90I" customClass="GameView" customModule="Swiftris" customModuleProvider="target">
+                                        <rect key="frame" x="300" y="0.0" width="300" height="600"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="DBS-JF-su9" secondAttribute="trailing" constant="-20" id="Bdq-sW-Sij"/>
+                            <constraint firstItem="DBS-JF-su9" firstAttribute="top" secondItem="bdc-N1-crn" secondAttribute="topMargin" id="Huq-6B-qPf"/>
+                            <constraint firstItem="DBS-JF-su9" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" constant="-20" id="LhB-c1-yOp"/>
+                            <constraint firstItem="b3d-qh-BLL" firstAttribute="top" secondItem="DBS-JF-su9" secondAttribute="bottom" id="UCi-bw-Mpd"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="9ge-jr-8Iz" appends="YES" id="2VI-Mb-R29"/>
+                            <outletCollection property="gestureRecognizers" destination="s3C-Mx-Ytj" appends="YES" id="Ods-TD-EzA"/>
+                            <outletCollection property="gestureRecognizers" destination="g8e-Mj-EDG" appends="YES" id="eTe-gd-b3d"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="skViewLeft" destination="mho-RT-B06" id="X1v-wP-pfz"/>
+                        <outlet property="skViewRight" destination="0oS-ga-90I" id="wt7-oN-wpL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9ge-jr-8Iz"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="s3C-Mx-Ytj"/>
+                <swipeGestureRecognizer direction="down" id="g8e-Mj-EDG"/>
+            </objects>
+            <point key="canvasLocation" x="554" y="494"/>
+        </scene>
+    </scenes>
+</document>
