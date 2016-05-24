@@ -9,6 +9,10 @@
 import UIKit
 import SpriteKit
 
+protocol GameControlDelegate {
+    func OneGameEnd(gameView:GameView)
+}
+
 class GameView: SKView{
 
     private var gameScene : GameScene!
@@ -18,6 +22,8 @@ class GameView: SKView{
     private var timeView: InfoView!
     private var timer : NSTimer?
     private var panPointReference : CGPoint?
+    
+    var delegate : GameControlDelegate?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         multipleTouchEnabled = false
@@ -53,10 +59,23 @@ class GameView: SKView{
         swiftris = Swiftris()
         swiftris.scene = gameScene
         swiftris.delegate = self
-        swiftris.beginGame()
         presentScene(gameScene)
         
         
+    }
+    func beginGame(withDelegate del:GameControlDelegate){
+        delegate = del
+//        swiftris.beginGame()
+//        gameScene.shapeLayer.removeAllChildren()
+        swiftris.scene!.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {
+            self.swiftris.beginGame()
+        }
+    }
+    func prepareForEndGame(){
+        
+    }
+    func endGame(){
+        swiftris.endGame()
     }
     private func addLevelView(){
         guard let viewFromNib = NSBundle.mainBundle().loadNibNamed("InfoView", owner: nil, options: nil).first as? InfoView else{return}
@@ -85,7 +104,7 @@ class GameView: SKView{
     func initTimer(){
         guard timer == nil || timer?.valid == false else{return}
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "countDown", userInfo: nil, repeats: true)
-
+        timeView.number = 60
     }
     func countDown(){
         if timeView.number > 0 {
@@ -143,7 +162,7 @@ extension GameView : UIGestureRecognizerDelegate{
     }
 }
 extension GameView : SwiftrisDelegate{
-    func nextShape(swiftris:Swiftris) {
+    private func nextShape(swiftris:Swiftris) {
         let newShapes = swiftris.newShape()
         guard let fallingShape = newShapes.fallingShape else {
             return
@@ -156,6 +175,7 @@ extension GameView : SwiftrisDelegate{
     }
     
     func gameDidBegin(swiftris: Swiftris) {
+        initTimer()
         levelView.number = swiftris.level
         scoreView.number = swiftris.score
         swiftris.scene!.tickLengthMillis = TickLengthLevelOne
@@ -171,12 +191,16 @@ extension GameView : SwiftrisDelegate{
     }
     
     func gameDidEnd(swiftris: Swiftris) {
+        if let timer = timer {
+            timer.invalidate()
+        }
+        delegate?.OneGameEnd(self)
         userInteractionEnabled = false
         swiftris.scene!.stopTicking()
         swiftris.scene!.playSound("Sounds/gameover.mp3")
-        swiftris.scene!.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {
-            swiftris.beginGame()
-        }
+//        swiftris.scene!.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {
+//            swiftris.beginGame()
+//        }
     }
     
     func gameDidLevelUp(swiftris: Swiftris) {

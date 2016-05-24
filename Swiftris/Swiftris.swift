@@ -28,6 +28,14 @@ class Swiftris {
     }
     
     func beginGame() {
+        if let fallShape = fallingShape{
+            for block in fallShape.blocks {
+                if let sprite = block.sprite {
+//                    sprite.removeFromParent()
+                }
+            }
+            fallingShape = nil
+        }
         if (nextShape == nil) {
             nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
         }

@@ -28,16 +28,16 @@ class SwiftrisTests: XCTestCase {
         XCTAssert(true, "Pass")
     }
     func testGameViewClass(){
-        var gameView : GameView?
-        for view in gameViewController.view.subviews where view is UIStackView {
-            for v in (view as! UIStackView).subviews where v is GameView{
-                gameView = (v as! GameView)
-                XCTAssertNotNil(gameView!.levelView)
-                gameView?.delegate = gameViewController
-                print(gameView!.levelView)
-            }
-        }
-        XCTAssertNotNil(gameView)
+//        var gameView : GameView?
+//        for view in gameViewController.view.subviews where view is UIStackView {
+//            for v in (view as! UIStackView).subviews where v is GameView{
+//                gameView = (v as! GameView)
+//                XCTAssertNotNil(gameView!.levelView)
+//                gameView?.delegate = gameViewController
+//                print(gameView!.levelView)
+//            }
+//        }
+//        XCTAssertNotNil(gameView)
     }
     func testPerformanceExample() {
         // This is an example of a performance test case.

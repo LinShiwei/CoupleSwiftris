@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		560902771CF3E0B600A74852 /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560902761CF3E0B600A74852 /* GuideView.xib */; };
+		560902791CF3E0CB00A74852 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560902781CF3E0CB00A74852 /* GuideView.swift */; };
+		5609027B1CF3F2DE00A74852 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5609027A1CF3F2DE00A74852 /* GameOverView.swift */; };
+		5609027D1CF3F2F700A74852 /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5609027C1CF3F2F700A74852 /* GameOverView.xib */; };
 		568CC8821CF28D4200D0D551 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568CC8811CF28D4200D0D551 /* InfoView.xib */; };
 		56FCCAF71CF1981600F35E6F /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FCCAF61CF1981600F35E6F /* GameView.swift */; };
 		56FCCAF91CF1DEC000F35E6F /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FCCAF81CF1DEC000F35E6F /* Define.swift */; };
@@ -53,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		560902761CF3E0B600A74852 /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
+		560902781CF3E0CB00A74852 /* GuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
+		5609027A1CF3F2DE00A74852 /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		5609027C1CF3F2F700A74852 /* GameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameOverView.xib; sourceTree = "<group>"; };
 		568CC8811CF28D4200D0D551 /* InfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
 		56FCCAF61CF1981600F35E6F /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		56FCCAF81CF1DEC000F35E6F /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
@@ -116,6 +124,10 @@
 				56FCCAFC1CF1E57500F35E6F /* InfoView.swift */,
 				568CC8811CF28D4200D0D551 /* InfoView.xib */,
 				E644DE291974A2EE0018B14C /* Main.storyboard */,
+				560902781CF3E0CB00A74852 /* GuideView.swift */,
+				560902761CF3E0B600A74852 /* GuideView.xib */,
+				5609027A1CF3F2DE00A74852 /* GameOverView.swift */,
+				5609027C1CF3F2F700A74852 /* GameOverView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -299,6 +311,7 @@
 				F65F84E5197829FF0050EF35 /* Sprites.atlas in Resources */,
 				F65F84EF19782EB80050EF35 /* gameboard@2x.png in Resources */,
 				E644DE2B1974A2EE0018B14C /* Main.storyboard in Resources */,
+				560902771CF3E0B600A74852 /* GuideView.xib in Resources */,
 				F65F84DF197829F60050EF35 /* bomb.mp3 in Resources */,
 				F65F84F119782EB80050EF35 /* whitebg@2x.png in Resources */,
 				F65F84E2197829F60050EF35 /* levelup.mp3 in Resources */,
@@ -306,6 +319,7 @@
 				F65F84EC19782EB80050EF35 /* background.png in Resources */,
 				F65F84ED19782EB80050EF35 /* background@2x.png in Resources */,
 				F65F84EE19782EB80050EF35 /* gameboard.png in Resources */,
+				5609027D1CF3F2F700A74852 /* GameOverView.xib in Resources */,
 				F65F84E0197829F60050EF35 /* drop.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +347,8 @@
 				F6037D1F197DC5DE005331B5 /* Swiftris.swift in Sources */,
 				F61F20F3197C9EB300A9986C /* TShape.swift in Sources */,
 				F61F20F0197C9EB300A9986C /* LineShape.swift in Sources */,
+				560902791CF3E0CB00A74852 /* GuideView.swift in Sources */,
+				5609027B1CF3F2DE00A74852 /* GameOverView.swift in Sources */,
 				F6037D1B197DBFC6005331B5 /* LShape.swift in Sources */,
 				F6037D1C197DBFC6005331B5 /* SShape.swift in Sources */,
 				F646C31A19784EB000D209B5 /* Array2D.swift in Sources */,
