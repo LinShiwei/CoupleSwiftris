@@ -41,10 +41,11 @@ class GameViewController: UIViewController{
         view.addSubview(guideView!)
     }
     
-    private func addGameOverView(){
+    private func addGameOverView(withWinner winner:Winner){
         guard let viewFromNib = NSBundle.mainBundle().loadNibNamed("GameOverView", owner: nil, options: nil).first as? GameOverView else{return}
         gameOverView = viewFromNib
         view.addSubview(gameOverView!)
+        gameOverView!.winner = winner
         gameOverView!.presentWithAnimation()
         let recognizer = UITapGestureRecognizer(target: self, action: "tapToRestart:")
         gameOverView!.addGestureRecognizer(recognizer)
@@ -63,13 +64,14 @@ extension GameViewController: GameControlDelegate {
         skViewRight.delegate = nil
         if gameView === skViewRight {
             skViewLeft.endGame()
+            addGameOverView(withWinner: .PlayerOne)
         }else{
             if gameView === skViewLeft {
                 skViewRight.endGame()
+                addGameOverView(withWinner: .PlayerTwo)
             }else{
                 print("Function OneGameEnd met a Error")
             }
         }
-        addGameOverView()
     }
 }

@@ -31,15 +31,21 @@ class Swiftris {
         if let fallShape = fallingShape{
             for block in fallShape.blocks {
                 if let sprite = block.sprite {
-//                    sprite.removeFromParent()
+                    sprite.removeFromParent()
                 }
             }
             fallingShape = nil
-        }
+        }//lsw
         if (nextShape == nil) {
             nextShape = Shape.random(PreviewColumn, startingRow: PreviewRow)
         }
+        score = 0
+        level = 1
         delegate?.gameDidBegin(self)
+    }
+    
+    func endGame() {
+        delegate?.gameDidEnd(self)
     }
     
     func newShape() -> (fallingShape:Shape?, nextShape:Shape?) {
@@ -49,6 +55,7 @@ class Swiftris {
         guard detectIllegalPlacement() == false else {
             nextShape = fallingShape
             nextShape!.moveTo(PreviewColumn, row: PreviewRow)
+            fallingShape = nil//lsw
             endGame()
             return (nil, nil)
         }
@@ -94,13 +101,7 @@ class Swiftris {
         }
         return false
     }
-    
-    func endGame() {
-        score = 0
-        level = 1
-        delegate?.gameDidEnd(self)
-    }
-    
+
     func removeAllBlocks() -> Array<Array<Block>> {
         var allBlocks = Array<Array<Block>>()
         for row in 0..<NumRows {

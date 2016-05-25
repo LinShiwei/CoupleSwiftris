@@ -7,16 +7,24 @@
 //
 
 import UIKit
+enum Winner{
+    case PlayerOne
+    case PlayerTwo
+}
 
 class GameOverView: UIView {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    var winner : Winner? {
+        didSet{
+            if winner == .PlayerOne{
+                playerWinLabel.text = "PlayOne Win!"
+            }
+            if winner == .PlayerTwo{
+                playerWinLabel.text = "PlayTwo Win!"
+            }
+        }
     }
-    */
+    @IBOutlet weak var playerWinLabel: UILabel!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         backgroundColor = UIColor(white: 0.9, alpha: 0.5)
