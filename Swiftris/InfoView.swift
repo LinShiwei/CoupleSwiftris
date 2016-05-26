@@ -13,7 +13,11 @@ class InfoView: UIView {
     var number = 0 {
         didSet{
             if let label = numberLabel {
-                label.text = String(number)
+                if number < 0 {
+                    label.text = "-"
+                }else{
+                    label.text = String(number)
+                }
             }
         }
     }

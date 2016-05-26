@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 protocol GameControlDelegate {
-    func OneGameEnd(gameView:GameView)
+    func oneGameEnd(gameView:GameView?)
 }
 
 class GameView: SKView{
@@ -20,9 +20,36 @@ class GameView: SKView{
     private var levelView : InfoView!
     private var scoreView : InfoView!
     private var timeView: InfoView!
-    private var timer : NSTimer?
     private var panPointReference : CGPoint?
+    var player : Player?{
+        didSet{
+            addPlayerLabel(player!)
+        }
+    }
     
+    static var timer : NSTimer?
+
+    var timeInSecond : Int?{
+        get{
+            if let timeView = timeView{
+                return timeView.number
+            }else{
+                return nil
+            }
+        }
+        set(newValue){
+            if let timeView = timeView{
+                timeView.number = newValue!
+            }
+        }
+    }
+    var score : Int? {
+        if let scoreView = scoreView {
+            return scoreView.number
+        }else{
+            return nil
+        }
+    }
     var delegate : GameControlDelegate?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -74,9 +101,11 @@ class GameView: SKView{
     func prepareForEndGame(){
         
     }
+    
     func endGame(){
         swiftris.endGame()
     }
+
     private func addLevelView(){
         guard let viewFromNib = NSBundle.mainBundle().loadNibNamed("InfoView", owner: nil, options: nil).first as? InfoView else{return}
         levelView = viewFromNib
@@ -98,21 +127,42 @@ class GameView: SKView{
         timeView = viewFromNib
         timeView.frame = CGRect(x: BlockSize*11, y: BlockSize*6, width: BlockSize*4, height: BlockSize*5)
         timeView.title = "TIME"
-        timeView.number = 60
+        timeView.number = survivalTimeLimit
         addSubview(timeView)
     }
-    func initTimer(){
-        guard timer == nil || timer?.valid == false else{return}
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "countDown", userInfo: nil, repeats: true)
-        timeView.number = 60
-    }
-    func countDown(){
-        if timeView.number > 0 {
-            timeView.number -= 1
-        }else{
-            timeView.number = 60
+    
+    private func addPlayerLabel(player:Player){
+        let label = UILabel(frame: CGRect(x: BlockSize, y: BlockSize*23, width: BlockSize*9, height: frame.size.height-BlockSize*22))
+        label.textColor = UIColor.whiteColor()
+        label.adjustsFontSizeToFitWidth  = true
+        label.font = UIFont.systemFontOfSize(70)
+        switch player{
+        case .PlayerOne:
+            label.text = "Player One"
+        case .PlayerTwo:
+            label.text = "Player Two"
+        case .None:
+            print("Fali to add PlayerLabel")
         }
+        addSubview(label)
     }
+//    func initTimer(enable:Bool){
+//        if enable {
+//            guard timer == nil || timer?.valid == false else{return}
+//            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "countDown", userInfo: nil, repeats: true)
+//            timeView.number = 60
+//        }else{
+//            timeView.number = -1
+//        }
+//        
+//    }
+//    func countDown(){
+//        if timeView.number > 0 {
+//            timeView.number -= 1
+//        }else{
+//            timeView.number = 60
+//        }
+//    }
     func didPan(sender:UIPanGestureRecognizer){
         let currentPoint = sender.translationInView(self)
         if let originalPoint = panPointReference {
@@ -175,7 +225,6 @@ extension GameView : SwiftrisDelegate{
     }
     
     func gameDidBegin(swiftris: Swiftris) {
-        initTimer()
         levelView.number = swiftris.level
         scoreView.number = swiftris.score
         swiftris.scene!.tickLengthMillis = TickLengthLevelOne
@@ -191,10 +240,10 @@ extension GameView : SwiftrisDelegate{
     }
     
     func gameDidEnd(swiftris: Swiftris) {
-        if let timer = timer {
-            timer.invalidate()
-        }
-        delegate?.OneGameEnd(self)
+//        if let timer = timer {
+//            timer.invalidate()
+//        }
+        delegate?.oneGameEnd(self)
         userInteractionEnabled = false
         swiftris.scene!.stopTicking()
         swiftris.scene!.playSound("Sounds/gameover.mp3")

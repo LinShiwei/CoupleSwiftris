@@ -21,12 +21,25 @@ class GameViewController: UIViewController{
     var gameOverView : GameOverView?
     var gameMode : GameMode?{
         didSet{
+            switch gameMode! {
+            case .Speed:
+//                skViewLeft.initTimer(true)
+//                skViewRight.initTimer(true)
+                initGameViewTimer(true)
+            case .Survival:
+//                skViewLeft.initTimer(false)
+//                skViewRight.initTimer(false)
+                initGameViewTimer(false)
+            }
+            
             skViewLeft.beginGame(withDelegate: self)
             skViewRight.beginGame(withDelegate: self)
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        skViewLeft.player = .PlayerOne
+        skViewRight.player = .PlayerTwo
         addGuideView()
     }
 
@@ -41,7 +54,7 @@ class GameViewController: UIViewController{
         view.addSubview(guideView!)
     }
     
-    private func addGameOverView(withWinner winner:Winner){
+    private func addGameOverView(withWinner winner:Player){
         guard let viewFromNib = NSBundle.mainBundle().loadNibNamed("GameOverView", owner: nil, options: nil).first as? GameOverView else{return}
         gameOverView = viewFromNib
         view.addSubview(gameOverView!)
@@ -56,21 +69,61 @@ class GameViewController: UIViewController{
         gameOverView?.removeFromSuperview()
         addGuideView()
     }
+    
+    private func initGameViewTimer(enable: Bool){
+        if enable {
+            guard GameView.timer == nil || GameView.timer?.valid == false else{return}
+            GameView.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "countDown", userInfo: nil, repeats: true)
+            skViewRight.timeInSecond = survivalTimeLimit
+            skViewLeft.timeInSecond = survivalTimeLimit
+        }else{
+            skViewRight.timeInSecond = -1
+            skViewLeft.timeInSecond = -1
+        }
+    }
+    
+    func countDown(){
+        if let _ = skViewRight.timeInSecond{
+            if skViewRight.timeInSecond > 0 {
+                skViewRight.timeInSecond! -= 1
+            }else{
+                if let score1 = skViewLeft.score, score2 = skViewRight.score {
+                    if score1 < score2 {
+                        skViewLeft.endGame()
+                    }else{
+                        if score2 < score1{
+                            skViewRight.endGame()
+                        }else{
+                            oneGameEnd(nil)
+                        }
+                    }
+                }
+            }
+            skViewLeft.timeInSecond = skViewRight.timeInSecond
+        }
+    }
 }
 extension GameViewController: GameControlDelegate {
-    func OneGameEnd(gameView: GameView) {
-        
+    func oneGameEnd(gameView: GameView?) {
+        GameView.timer?.invalidate()
         skViewLeft.delegate = nil
         skViewRight.delegate = nil
-        if gameView === skViewRight {
+        
+        if gameView == nil {
             skViewLeft.endGame()
-            addGameOverView(withWinner: .PlayerOne)
+            skViewRight.endGame()
+            addGameOverView(withWinner: .None)
         }else{
-            if gameView === skViewLeft {
-                skViewRight.endGame()
-                addGameOverView(withWinner: .PlayerTwo)
+            if gameView === skViewRight {
+                skViewLeft.endGame()
+                addGameOverView(withWinner: .PlayerOne)
             }else{
-                print("Function OneGameEnd met a Error")
+                if gameView === skViewLeft {
+                    skViewRight.endGame()
+                    addGameOverView(withWinner: .PlayerTwo)
+                }else{
+                    print("Function oneGameEnd met a Error")
+                }
             }
         }
     }

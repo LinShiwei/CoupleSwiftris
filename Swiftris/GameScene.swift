@@ -39,7 +39,6 @@ class GameScene: SKScene {
         
         shapeLayer.position = LayerPosition
         shapeLayer.addChild(gameBoard)
-//        gameLayer.addChild(gameBoard)
         gameLayer.addChild(shapeLayer)
         
         runAction(SKAction.repeatActionForever(SKAction.playSoundFileNamed("theme.mp3", waitForCompletion: true)))
