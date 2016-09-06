@@ -30,7 +30,6 @@ class InfoView: UIView {
     }
 
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var numberLabel: UILabel!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

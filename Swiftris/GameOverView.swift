@@ -28,6 +28,7 @@ class GameOverView: UIView {
             }
         }
     }
+    @IBOutlet weak var gameOverLabel: UILabel!
     @IBOutlet weak var playerWinLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,7 +37,13 @@ class GameOverView: UIView {
         frame = windowBounds
         alpha = 0
     }
-    
+    override func awakeFromNib() {
+        gameOverLabel.adjustsFontSizeToFitWidth = true
+        gameOverLabel.layer.cornerRadius = 10
+        gameOverLabel.clipsToBounds = true
+        playerWinLabel.layer.cornerRadius = 10
+        playerWinLabel.clipsToBounds = true
+    }
     func presentWithAnimation(){
         UIView.animateWithDuration(1, delay: 0, options: .CurveEaseInOut, animations: { void in
                 self.alpha = 1

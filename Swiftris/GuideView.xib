@@ -12,16 +12,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aQq-6f-s9o">
-                    <rect key="frame" x="210" y="260" width="180" height="80"/>
+                    <rect key="frame" x="130" y="220" width="340" height="160"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOa-x8-izq">
-                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                             <color key="backgroundColor" red="0.73457228535353536" green="0.73457228535353536" blue="0.73457228535353536" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="80" id="3td-se-et8"/>
-                                <constraint firstAttribute="height" constant="80" id="vLW-Fp-Ur5"/>
+                                <constraint firstAttribute="width" constant="160" id="3td-se-et8"/>
+                                <constraint firstAttribute="height" constant="160" id="vLW-Fp-Ur5"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
                             <state key="normal" title="生存模式">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -30,13 +30,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rjy-oY-ibi">
-                            <rect key="frame" x="100" y="0.0" width="80" height="80"/>
+                            <rect key="frame" x="180" y="0.0" width="160" height="160"/>
                             <color key="backgroundColor" red="0.73457228535353536" green="0.73457228535353536" blue="0.73457228535353536" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="80" id="2Ov-GT-hFR"/>
-                                <constraint firstAttribute="height" constant="80" id="R3l-ie-5Pi"/>
+                                <constraint firstAttribute="width" constant="160" id="2Ov-GT-hFR"/>
+                                <constraint firstAttribute="height" constant="160" id="R3l-ie-5Pi"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
                             <state key="normal" title="竞速模式">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -52,6 +52,10 @@
                 <constraint firstItem="aQq-6f-s9o" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QhO-pX-Zj7"/>
                 <constraint firstItem="aQq-6f-s9o" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="RKl-0S-jgV"/>
             </constraints>
+            <connections>
+                <outlet property="speedModeBtn" destination="Rjy-oY-ibi" id="E4O-Te-gnt"/>
+                <outlet property="survivalModeBtn" destination="iOa-x8-izq" id="Gdf-WV-E4B"/>
+            </connections>
         </view>
     </objects>
 </document>

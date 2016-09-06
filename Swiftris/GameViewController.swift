@@ -23,12 +23,8 @@ class GameViewController: UIViewController{
         didSet{
             switch gameMode! {
             case .Speed:
-//                skViewLeft.initTimer(true)
-//                skViewRight.initTimer(true)
                 initGameViewTimer(true)
             case .Survival:
-//                skViewLeft.initTimer(false)
-//                skViewRight.initTimer(false)
                 initGameViewTimer(false)
             }
             

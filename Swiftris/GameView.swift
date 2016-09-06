@@ -67,7 +67,7 @@ class GameView: SKView{
         tapGestureRecognizer.delegate = self
         addGestureRecognizer(tapGestureRecognizer)
         
-        layer.borderColor = UIColor.greenColor().CGColor
+        layer.borderColor = UIColor.blackColor().CGColor
         layer.borderWidth = 5
 
         
@@ -92,8 +92,6 @@ class GameView: SKView{
     }
     func beginGame(withDelegate del:GameControlDelegate){
         delegate = del
-//        swiftris.beginGame()
-//        gameScene.shapeLayer.removeAllChildren()
         swiftris.scene!.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: swiftris.removeAllBlocks()) {
             self.swiftris.beginGame()
         }
@@ -146,23 +144,6 @@ class GameView: SKView{
         }
         addSubview(label)
     }
-//    func initTimer(enable:Bool){
-//        if enable {
-//            guard timer == nil || timer?.valid == false else{return}
-//            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "countDown", userInfo: nil, repeats: true)
-//            timeView.number = 60
-//        }else{
-//            timeView.number = -1
-//        }
-//        
-//    }
-//    func countDown(){
-//        if timeView.number > 0 {
-//            timeView.number -= 1
-//        }else{
-//            timeView.number = 60
-//        }
-//    }
     func didPan(sender:UIPanGestureRecognizer){
         let currentPoint = sender.translationInView(self)
         if let originalPoint = panPointReference {
@@ -240,9 +221,7 @@ extension GameView : SwiftrisDelegate{
     }
     
     func gameDidEnd(swiftris: Swiftris) {
-//        if let timer = timer {
-//            timer.invalidate()
-//        }
+
         delegate?.oneGameEnd(self)
         userInteractionEnabled = false
         swiftris.scene!.stopTicking()

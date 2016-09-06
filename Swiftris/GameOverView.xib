@@ -14,8 +14,8 @@
                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Csh-SS-C13">
                     <rect key="frame" x="186" y="222" width="229" height="158"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="23" translatesAutoresizingMaskIntoConstraints="NO" id="P4Z-lH-q5e">
-                            <rect key="frame" x="0.0" y="0.0" width="234" height="84"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="  Game Over  " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="P4Z-lH-q5e">
+                            <rect key="frame" x="-22" y="0.0" width="274" height="90"/>
                             <color key="backgroundColor" red="0.73457228535353536" green="0.73457228535353536" blue="0.73457228535353536" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="90" id="CUQ-52-IOT"/>
@@ -25,7 +25,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PlayerOne Win" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBg-B9-CbL">
-                            <rect key="frame" x="0.0" y="92" width="234" height="56"/>
+                            <rect key="frame" x="20" y="98" width="189" height="60"/>
                             <color key="backgroundColor" red="0.73457228539999997" green="0.73457228539999997" blue="0.73457228539999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="jx3-Z6-mc0"/>
@@ -38,10 +38,10 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="P4Z-lH-q5e" firstAttribute="top" secondItem="Csh-SS-C13" secondAttribute="top" id="4hF-fK-Pcj"/>
-                        <constraint firstAttribute="trailing" secondItem="KBg-B9-CbL" secondAttribute="trailing" id="9xZ-28-mm1"/>
+                        <constraint firstAttribute="trailing" secondItem="KBg-B9-CbL" secondAttribute="trailing" constant="20" id="9xZ-28-mm1"/>
                         <constraint firstItem="KBg-B9-CbL" firstAttribute="top" secondItem="P4Z-lH-q5e" secondAttribute="bottom" constant="8" id="KtC-sL-S4n"/>
                         <constraint firstAttribute="bottom" secondItem="KBg-B9-CbL" secondAttribute="bottom" id="R6d-0a-hpf"/>
-                        <constraint firstItem="KBg-B9-CbL" firstAttribute="leading" secondItem="Csh-SS-C13" secondAttribute="leading" id="Yir-B0-NoU"/>
+                        <constraint firstItem="KBg-B9-CbL" firstAttribute="leading" secondItem="Csh-SS-C13" secondAttribute="leading" constant="20" id="Yir-B0-NoU"/>
                         <constraint firstItem="P4Z-lH-q5e" firstAttribute="leading" secondItem="Csh-SS-C13" secondAttribute="leading" id="bTB-Cl-9NQ"/>
                         <constraint firstAttribute="trailing" secondItem="P4Z-lH-q5e" secondAttribute="trailing" id="uUh-BO-hyN"/>
                     </constraints>
@@ -53,6 +53,7 @@
                 <constraint firstItem="Csh-SS-C13" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="n6X-32-Mqj"/>
             </constraints>
             <connections>
+                <outlet property="gameOverLabel" destination="P4Z-lH-q5e" id="KDE-sn-Jnc"/>
                 <outlet property="playerWinLabel" destination="KBg-B9-CbL" id="kyO-y9-1ZA"/>
             </connections>
         </view>
