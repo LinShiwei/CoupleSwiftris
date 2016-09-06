@@ -14,7 +14,7 @@ let BlockSize : CGFloat = windowBounds.width/2/16
 
 let TickLengthLevelOne = NSTimeInterval(600)
 
-let survivalTimeLimit = 6
+let survivalTimeLimit = 60
 
 let NumColumns = 10
 let NumRows = 20
